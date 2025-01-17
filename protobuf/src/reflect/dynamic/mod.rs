@@ -96,7 +96,7 @@ impl DynamicFieldValue {
 }
 
 #[derive(Debug, Clone)]
-pub(crate) struct DynamicMessage {
+pub struct DynamicMessage {
     descriptor: MessageDescriptor,
     /// Fields by index in the description.
     /// This field is lazy-init: it is empty when created.
@@ -127,7 +127,7 @@ impl DynamicMessage {
         }
     }
 
-    pub(crate) fn get_reflect<'a>(&'a self, field: &FieldDescriptor) -> ReflectFieldRef<'a> {
+    pub fn get_reflect<'a>(&'a self, field: &FieldDescriptor) -> ReflectFieldRef<'a> {
         let (descriptor, index) = field.regular();
         assert_eq!(self.descriptor, descriptor);
         if self.fields.is_empty() {
